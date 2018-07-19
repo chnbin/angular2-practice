@@ -8,10 +8,10 @@
 
   <div class="field">
     <label for="link">Link:</label>
-    <input name="link" #newLink>
+    <input name="link"  #newLink>
   </div>
 
-  <button click="addAtricle(newTitle, newLink)" class="ui positive right floated button">
+  <button (click)="addArticle(newTitle,newLink)" class="ui positive right floated button">
     Submit link
   </button>
 </form>
