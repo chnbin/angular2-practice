@@ -9,7 +9,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  serverElements = [{type: 'Server', name: 'Test Server', content: 'For test'}];
+  serverElements = [{type: 'server', name: 'Test Server', content: 'For test'}];
 
   onServerCreated(serverData: {name: string, content: string}) {
     this.serverElements.push({
