@@ -8,14 +8,20 @@
       <div *ngIf = "onlyOdd">
         <ul class="list-group">
           <li *ngFor = "let odd of odds"
-            class="list-group-item"> {{odd}}
+            class="list-group-item"
+            [ngClass]="{odd: odd % 2 !== 0}"
+            [ngStyle]="{background: odd % 2 !==0 ? 'red' : 'yellow'}"
+            > {{odd}}
           </li>
         </ul>
       </div>
       <div *ngIf = "!onlyOdd">
         <ul class="list-group">
           <li *ngFor = "let even of evens"
-            class="list-group-item"> {{even}}
+            class="list-group-item"
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{background: even % 2 !==0 ? 'red' : 'yellow'}"
+            > {{even}}
           </li>
         </ul>
       </div>
