@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoggingService } from '../logging.service';
 import { AccountsService } from '../accounts.service';
 
 @Component({
@@ -9,16 +8,15 @@ import { AccountsService } from '../accounts.service';
 
   // Parent component providers AccountsService, if we add AccountsService here, there will be
   // TWO AccountsService instance.
-  providers: [LoggingService]
+  providers: []
 })
 export class NewAccountComponent {
-   constructor(private loggingService: LoggingService,
-              private accountsService: AccountsService) {
+   constructor(private accountsService: AccountsService) {
 
   }
 
   onCreateAccount(accountName: string, accountStatus: string) {
     this.accountsService.addAccount(accountName, accountStatus);
-    this.loggingService.logStatusChange(accountStatus);
+    // this.loggingService.logStatusChange(accountStatus);
   }
 }

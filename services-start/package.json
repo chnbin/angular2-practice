@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint-ts": "npm run format-ts && ng lint atlas-fe atlas-fe-e2e --type-check",
     "e2e": "ng e2e"
   },
   "private": true,
