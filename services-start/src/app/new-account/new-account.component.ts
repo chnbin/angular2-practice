@@ -12,7 +12,11 @@ import { AccountsService } from '../accounts.service';
 })
 export class NewAccountComponent {
    constructor(private accountsService: AccountsService) {
-
+    this.accountsService.statusUpdated.subscribe(
+      (status: string) => {
+        console.log('Status update.');
+      }
+    );
   }
 
   onCreateAccount(accountName: string, accountStatus: string) {
