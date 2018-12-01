@@ -14,17 +14,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    const nums = Observable.interval(100);
+    const nums = Observable.interval(100).map(
+      (value: number) => {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+    );
     this.numSubscription = nums.subscribe(
       (num: number) => {
-        let dice = Math.floor(Math.random() * 6) + 1;
-        console.log(`${num} generate ${dice}.`)
-        this.generatedNums.push(dice);
+        // let dice = Math.floor(Math.random() * 6) + 1;
+        console.log(num)
+        this.generatedNums.push(num);
         // console.log(this.generatedNums);
       }
     );
 
-    const myObservable = Observable.create((observer: Observer) => {
+    const myObservable = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {
         observer.next('1st package');
       },2000);
