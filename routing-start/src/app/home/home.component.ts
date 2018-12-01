@@ -20,4 +20,11 @@ export class HomeComponent implements OnInit {
     // absolute path
     this.router.navigate(['/servers']);
   }
+
+  onLoadServer2 (id: number) {
+    this.router.navigate(['/servers', id, 'edit'],
+                         {queryParams: {allowEdit:'1'},
+                                       fragment: 'loading'}
+    );
+  }
 }
