@@ -8,6 +8,7 @@ import { ServersComponent } from "./servers/servers.component";
 import { ServerComponent } from "./servers/server/server.component";
 import { EditServerComponent } from "./servers/edit-server/edit-server.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { AuthGuardService } from "./auth-guard.service";
 
 const appRoute : Routes = [
   {'path': '', 'component': HomeComponent},
@@ -15,7 +16,11 @@ const appRoute : Routes = [
     {'path': ':id/:name', 'component': UserComponent}
   ]},
   // Dynamic route
-  {'path': 'servers', 'component': ServersComponent, children:[
+  {'path': 'servers',
+    // canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
+    'component': ServersComponent,
+    children:[
     {'path': ':id', 'component': ServerComponent},
     {'path': ':id/edit', 'component': EditServerComponent}
   ]},
