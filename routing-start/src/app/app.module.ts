@@ -14,11 +14,14 @@ import { ServersService } from './servers/servers.service';
 
 const appRoute : Routes = [
   {'path': '', 'component': HomeComponent},
-  {'path': 'users', 'component': UserComponent},
+  {'path': 'users', 'component': UsersComponent, children: [
+    {'path': ':id/:name', 'component': UserComponent}
+  ]},
   // Dynamic route
-  {'path': 'users/:id/:name', 'component': UserComponent},
-  {'path': 'servers', 'component': ServersComponent},
-  {'path': 'servers/:id/edit', 'component': EditServerComponent}
+  {'path': 'servers', 'component': ServersComponent, children:[
+    {'path': ':id', 'component': ServerComponent},
+    {'path': ':id/edit', 'component': EditServerComponent}
+  ]}
 ];
 
 @NgModule({
