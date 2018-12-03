@@ -23,10 +23,46 @@ export class AppComponent implements OnInit{
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
     });
+
+    // Track form's values or status
+    this.signupForm.valueChanges.subscribe(
+      (value) => {
+        console.log(value);
+      }
+    );
+
+    this.signupForm.statusChanges.subscribe(
+      (status) => {
+        console.log(status);
+      }
+    );
+
+    this.signupForm.setValue({
+      'userdata': {
+        'username': 'Inaba',
+        'email': 'inaba@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
+
+    this.signupForm.patchValue({
+      'gender': 'female',
+    });
+    // this.signupForm.get('email').statusChanges.subscribe(
+    //   (status) => {
+    //     console.log(`Email status: ${status}`);
+    //   }
+    // );
   }
 
   onNgSubmit() {
     console.log(this.signupForm);
+    // Reset form.
+    this.signupForm.reset();
+
+    // You can reset specify control with default value.
+    this.signupForm.get('gender').reset('male');
   }
 
   onAddHobby() {
