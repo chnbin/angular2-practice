@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  filteredStatus = '';
   servers = [
     {
       instanceType: 'medium',
@@ -38,5 +39,14 @@ export class AppComponent {
       'list-group-item-warning': server.status === 'offline',
       'list-group-item-danger': server.status === 'critical'
     };
+  }
+
+  addServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'Simulation Env',
+      status: 'stable',
+      started: new Date(15, 5, 2018)
+    });
   }
 }
