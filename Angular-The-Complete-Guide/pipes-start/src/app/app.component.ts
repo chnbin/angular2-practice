@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { resolve, reject } from 'q';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,14 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
+
+  // If you don't use async pipe...
+  status = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Online');
+    },3000);
+  });
+
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
     return {
       'list-group-item-success': server.status === 'stable',

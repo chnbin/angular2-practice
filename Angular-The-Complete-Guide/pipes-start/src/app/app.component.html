@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <input type="text" [(ngModel)]="filteredStatus">
+      <br>
       <button class="btn btn-primary" (click)="addServer()">Add server</button>
+      <br>
+      <h3>App status {{status | async }}</h3>
       <ul class="list-group">
         <li
           class="list-group-item"
