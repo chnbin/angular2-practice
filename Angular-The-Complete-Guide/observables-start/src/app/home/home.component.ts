@@ -9,12 +9,15 @@ import { Observable, Observer, Subscription } from 'rxjs/Rx';
 export class HomeComponent implements OnInit, OnDestroy {
   numSubscription: Subscription;
   customSubscription: Subscription;
+  formClickSubscription: Subscription;
 
-  generatedNums: number[] = []
+  showText = '';
+
+  generatedNums: number[] = [];
   constructor() { }
 
   ngOnInit() {
-    const nums = Observable.interval(100).map(
+    const nums = Observable.interval(10000).map(
       (value: number) => {
         return Math.floor(Math.random() * 6) + 1;
       }
@@ -31,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const myObservable = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {
         observer.next('1st package');
-      },2000);
+      }, 2000);
 
       setTimeout(() => {
         observer.next('2nd package');
@@ -39,14 +42,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
         observer.error('This dose error');
-      },5000);
+      }, 5000);
     });
 
     this.customSubscription = myObservable.subscribe(
-      (data: string) => {console.log(data);},
-      (error: string) => {console.log(error);},
-      () => { console.log('Complete');}
+      (data: string) => {console.log(data); },
+      (error: string) => {console.log(error); },
+      () => { console.log('Complete'); }
     );
+
+    const formClickObservable = Observable.fromEvent(document.body, 'click');
+    this.formClickSubscription = formClickObservable.subscribe(() => {
+      console.log('Form click');
+    });
+
+
   }
 
   ngOnDestroy() {
